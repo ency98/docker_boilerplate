@@ -1,0 +1,26 @@
+
+version: v3
+teleport:
+  nodename: teleport.example.com
+  data_dir: /var/lib/teleport
+  log:
+    output: stderr
+    severity: INFO
+    format:
+      output: text
+  ca_pin: ""
+  diag_addr: ""
+auth_service:
+  enabled: "yes"
+  listen_addr: 0.0.0.0:3025
+  proxy_listener_mode: multiplex
+  cluster_name: teleport.example.com
+ssh_service:
+  enabled: "no"
+proxy_service:
+  enabled: "yes"
+  web_listen_addr: 0.0.0.0:3080
+  public_addr: teleport.example.com:443
+  https_keypairs: []
+  https_keypairs_reload_interval: 0s
+  acme: {}

@@ -1,0 +1,13 @@
+
+services:
+  teleport:
+    hostname: teleport.example.com
+    image: public.ecr.aws/gravitational/teleport-distroless:14.2.1
+    container_name: teleport
+    ports:
+      - "3080:3080"
+      - "3025:3025"
+    volumes:
+      - ./config:/etc/teleport
+      - ./data:/var/lib/teleport
+    restart: unless-stopped

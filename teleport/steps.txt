@@ -49,7 +49,7 @@ From the teleport directory
 ## Generate base config file. Or copy and edit the one provided. 
 docker run --hostname localhost --rm --entrypoint=/usr/local/bin/teleport public.ecr.aws/gravitational/teleport-distroless:14.2.1 configure --roles=proxy,auth > ./config/teleport.yaml
 
-I recomend you use my config file as it was a bitch to figure out what missing pices were needed. 
+I recomend you use my config file as it was a bitch to figure out what missing parts were needed. 
 
 ########
 Step 4

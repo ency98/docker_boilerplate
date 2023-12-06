@@ -1,5 +1,20 @@
 As is this repo is ready to deploy. Just clone the repo and change all instaces of "teleport.example.com" with your public dns entry. 
 
+Good links
+
+
+# Basic install guides
+https://github.com/gravitational/teleport#docker
+
+https://goteleport.com/docs/installation/#running-teleport-on-docker
+
+
+Create first user
+https://computingforgeeks.com/run-teleport-in-docker-docker-compose/
+
+# all the important stuff the guides dont tell you are important about the docker-compose file and the teleport.yaml file
+https://github.com/ChristianLempa/boilerplates/tree/main/docker-compose/teleport
+
 
 ########
 Step 1
@@ -13,10 +28,6 @@ https IP_of_docker_host :3080
 # Internal DNS
 External DNS is pointed to my public facing NGINX proxy manager server I use "teleport.encyapps.com"
 
-my setup looks like this
-
-Public DNS >> proxy server >> Public Zerotier GW >> Internal Zerotier GW >> DMZ proxy server >> Firewall >> DMZ NGINX >> Firewall >> Authentik >> docker host > Teleport container
-Hover.com     redir                                                                   redir         UFW/iptables    NPM      UFW/IPtables
 
 ########
 Step 2
@@ -44,21 +55,16 @@ I recomend you use my config file as it was a bitch to figure out what missing p
 Step 4
 ########
 
-edit and run the docker compose file or .env in the teleport directory as needed. 
+Create or copy docker-compose.yml
 
 ########
 Step 5
 ########
 
 ## Add user
-docker exec teleport tctl users add bwilsonadmin --roles=editor,access --logins=root,ubuntu,bwilsonadmin,bwilson,ency98@gmail.com
+docker exec teleport tctl users add USERNAME --roles=editor,access --logins=root,ubuntu,USERNAME_0,USERNAME_1,USERNAME_2
 
+## Go to Wub UI
 Copy the URL generated and log in to teleport. 
 
-### Not finished figuring it out
-## Windows RDP 
-# export cert from teleport
-curl -o teleport.cer https://teleport.encyapps.com/webapi/auth/export?type=windows
 
-# Generate token
-docker exec teleport tctl tokens add --type=windowsdesktop

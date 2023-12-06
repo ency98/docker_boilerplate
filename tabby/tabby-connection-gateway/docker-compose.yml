@@ -1,8 +1,0 @@
-services:
-    eugeny:
-        command: --token-auth --host 0.0.0.0
-        environment:
-            - TABBY_AUTH_TOKEN=MAKE_YOUR_OWN_TOKEN_20+_CHAR
-        ports:
-            - 9000:9000
-        image: 'ghcr.io/eugeny/tabby-connection-gateway:master'

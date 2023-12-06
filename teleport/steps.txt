@@ -1,70 +1,69 @@
 As is this repo is ready to deploy. Just clone the repo and change all instaces of "teleport.example.com" with your public dns entry. 
 
-Good links
+# Good links
 
-
-# Basic install guides
+## Basic install guides
 https://github.com/gravitational/teleport#docker
-
 https://goteleport.com/docs/installation/#running-teleport-on-docker
 
-
-Create first user
+## Create first user
 https://computingforgeeks.com/run-teleport-in-docker-docker-compose/
 
-# all the important stuff the guides dont tell you are important about the docker-compose file and the teleport.yaml file
+## All the important stuff the guides dont tell you are important about the docker-compose file and the teleport.yaml file
 https://github.com/ChristianLempa/boilerplates/tree/main/docker-compose/teleport
 
 
 ########
 Step 1
 ######## 
-## DNS
-# Internal DNS
-My internal DNS entry is pointed to my public facing NGINX proxy manager server I use "teleport.encyapps.com"
+# DNS
+## Internal DNS
+
+My internal DNS entry is pointed to my public facing NGINX proxy manager server I use "teleport.example.com"
 
 https IP_of_docker_host :3080 
 
-# Internal DNS
-External DNS is pointed to my public facing NGINX proxy manager server I use "teleport.encyapps.com"
+## External DNS
+
+External DNS is pointed to my public facing NGINX proxy manager server I use "teleport.example.com"
 
 
 ########
 Step 2
 ########
 
-In your docker directory create this folder structire or clone this repo.
+# In your docker directory create this folder structire or clone this repo.
 
-docker
-- teleport
--- data_dir
--- config
+- docker_appdata
+- - teleport
+- - - data_dir
+- - - config
 
 ########
 Step 3
 ########
 
-From the teleport directory 
+# From the teleport directory 
 
 ## Generate base config file. Or copy and edit the one provided. 
 docker run --hostname localhost --rm --entrypoint=/usr/local/bin/teleport public.ecr.aws/gravitational/teleport-distroless:14.2.1 configure --roles=proxy,auth > ./config/teleport.yaml
 
-I recomend you use my config file as it was a bitch to figure out what missing parts were needed. 
+# I recomend you use my config file as it was a bitch to figure out what missing parts were needed. 
 
 ########
 Step 4
 ########
 
-Create or copy docker-compose.yml
+# Create or copy docker-compose.yml
 
 ########
 Step 5
 ########
 
-## Add user
+# Add user
 docker exec teleport tctl users add USERNAME --roles=editor,access --logins=root,ubuntu,USERNAME_0,USERNAME_1,USERNAME_2
 
-## Go to Wub UI
+# Go to Wub UI
 Copy the URL generated and log in to teleport. 
 
 
